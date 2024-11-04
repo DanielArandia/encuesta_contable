@@ -1,0 +1,91 @@
+/* app.component.css */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    background: white;
+    padding: 120px; /* Reducido a 120px */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 6px 40px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
+    width: 90%; /* Ocupa el 90% del ancho de la ventana */
+    max-width: 1100px; /* Reducido a 1100px para centrar más */
+    text-align: center; /* Centrar el texto dentro del contenedor */
+  }
+  
+  h1 {
+    font-size: 72px; /* Reducido para hacerlo más pequeño */
+    color: #333;
+    margin-bottom: 80px; /* Ajuste de margen inferior para separación */
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-around; /* Mantener el espacio alrededor de los botones */
+    margin-bottom: 80px; /* Espacio inferior para mayor separación */
+  }
+  
+  .btn {
+    padding: 15px 25px; /* Mantener tamaño del botón */
+    border: none;
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 30px; /* Ajuste para que no sea tan grande */
+    flex: 1; /* Permitir que los botones ocupen el mismo espacio */
+    margin: 0 15px; /* Espaciado entre botones reducido a 15px */
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .form-container {
+    margin-top: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px; /* Ajuste de margen inferior */
+    font-weight: bold;
+    font-size: 28px; /* Ajuste para hacer más pequeño */
+  }
+  
+  input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 15px; /* Ajustado para no ser tan grande */
+    margin-bottom: 30px; /* Espacio inferior ajustado */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 24px; /* Ajuste para hacer más pequeño */
+  }
+  
+  .submit-btn {
+    padding: 15px 25px; /* Ajustado para no ser tan grande */
+    border: none;
+    border-radius: 5px; /* Bordes más redondeados */
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 30px; /* Ajuste para hacer más pequeño */
+  }
+  
+  .submit-btn:hover {
+    background-color: #218838;
+  }
+  
