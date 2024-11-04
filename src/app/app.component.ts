@@ -1,4 +1,5 @@
-import { CommonModule } from '@angular/common'; // Importa CommonModule
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http'; // Importa HttpClient
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,19 +7,45 @@ import { Component } from '@angular/core';
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [CommonModule], // Añade CommonModule aquí
+  imports: [CommonModule, HttpClientModule], // Añade HttpClientModule aquí
 })
 export class AppComponent {
   title = 'Asesoría Fiscal';
   selectedForm: string | null = null; // Estado para rastrear qué formulario se muestra
 
+  constructor(private http: HttpClient) {} // Inyecta HttpClient
+
   showForm(formName: string) {
     this.selectedForm = formName; // Actualiza el formulario seleccionado
   }
 
-  // Función para manejar el envío de formularios (puedes personalizarlo más tarde)
   onSubmit(event: Event) {
     event.preventDefault(); // Evitar el comportamiento predeterminado del formulario
-    alert('Formulario enviado!'); // Aquí puedes implementar la lógica para manejar los archivos
+  
+    const formData = new FormData();
+    const target = event.target as HTMLFormElement;
+  
+    // Selecciona todos los inputs de tipo file y convierte cada uno a HTMLInputElement
+    const files = target.querySelectorAll('input[type="file"]');
+    files.forEach((fileInput) => {
+      const inputElement = fileInput as HTMLInputElement; // Casting a HTMLInputElement
+      const file = inputElement.files?.[0]; // Ahora puedes acceder a .files
+      if (file) {
+        formData.append('files', file);
+      }
+    });
+  
+    // Enviar el FormData al backend
+    this.http.post('http://localhost:3000/upload', formData).subscribe({
+      next: (response) => {
+        console.log('Archivo subido correctamente:', response);
+        alert('Formulario enviado y archivo subido!');
+      },
+      error: (error) => {
+        console.error('Error al subir el archivo:', error);
+        alert('Error al enviar el formulario.');
+      }
+    });
   }
+  
 }

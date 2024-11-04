@@ -1,39 +1,26 @@
 const express = require('express');
+const cors = require('cors');
 const multer = require('multer');
-const path = require('path');
 
 const app = express();
-const PORT = 3000;
+const upload = multer({ dest: 'uploads/' });
 
-// Configuración de almacenamiento de archivos con multer
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Carpeta donde se guardarán los archivos
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, uniqueSuffix + '-' + file.originalname);
-  }
-});
+app.use(cors({ origin: 'http://192.168.100.2:4200' })); // Ajusta con la IP seleccionada
+app.use(express.json());
 
-// Middleware de carga de archivos
-const upload = multer({ storage: storage });
-
-// Crear la carpeta 'uploads' si no existe
-const fs = require('fs');
-if (!fs.existsSync('uploads')) {
-  fs.mkdirSync('uploads');
-}
-
-// Ruta para manejar la carga de archivos
 app.post('/upload', upload.array('files'), (req, res) => {
-  if (!req.files) {
+  console.log('Solicitud de carga recibida');
+  console.log('Archivos recibidos:', req.files);
+
+  if (!req.files || req.files.length === 0) {
+    console.error('No se recibieron archivos');
     return res.status(400).send('No se subieron archivos');
   }
+
   res.send('Archivos subidos exitosamente');
 });
 
-// Iniciar el servidor
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
+const PORT = 3000;
+app.listen(PORT, '192.168.100.2', () => {
+  console.log(`Servidor corriendo en http://192.168.100.2:${PORT}`);
 });
