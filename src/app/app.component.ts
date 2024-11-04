@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Importa CommonModule
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
