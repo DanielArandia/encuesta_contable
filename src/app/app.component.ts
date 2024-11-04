@@ -36,7 +36,7 @@ export class AppComponent {
     });
   
     // Enviar el FormData al backend
-    this.http.post('http://localhost:3000/upload', formData).subscribe({
+    this.http.post('http://192.168.100.2:3000/upload', formData, { responseType: 'text' }).subscribe({
       next: (response) => {
         console.log('Archivo subido correctamente:', response);
         alert('Formulario enviado y archivo subido!');
@@ -46,6 +46,7 @@ export class AppComponent {
         alert('Error al enviar el formulario.');
       }
     });
+    
   }
   
 }
